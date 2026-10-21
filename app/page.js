@@ -6,7 +6,7 @@ import Project from "@/components/Project";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import Process from "@/components/Process";
 import ReviewsAndCTA from "@/components/ReviewsAndCTA";
-import Footer from "@/components/Footer";
+
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
       <ReviewsAndCTA
       />
       <Contact/>
-      <Footer/>
+      
     </main>
   );
 }
