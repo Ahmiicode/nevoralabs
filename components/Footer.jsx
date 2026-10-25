@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear(); // 2026
 
   return (
-    <footer className="w-full bg-[#FAFAF8] pt-4 pb-12 px-4 sm:px-6 lg:px-8 font-sans">
+    <footer className="w-full bg-transparent  pt-4 pb-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="w-full max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0 }}

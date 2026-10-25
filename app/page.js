@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSlider from "../components/HeroSlider";
 
-import Capabilities from "@/components/Capabilities";
+
 import Project from "@/components/Project";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import Process from "@/components/Process";
@@ -9,16 +9,19 @@ import ReviewsAndCTA from "@/components/ReviewsAndCTA";
 
 
 import Contact from "@/components/Contact";
-import AboutSection from "@/components/NevoraAbout";
+
+import TransformationSection from "@/components/TransformationSection";
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="">
       <Navbar/>
       <HeroSlider />
-      <AboutSection/>
-      <ServicesCarousel/>
-      <Capabilities/>
+       <ServicesCarousel/>
+      
+      <TransformationSection/>
+     
+ 
       <Project/>
       <Process/>
       <ReviewsAndCTA
