@@ -1,8 +1,19 @@
 'use client';
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, Mail, MessageSquare, Globe2, Sparkles, Send } from 'lucide-react';
+import { 
+  ArrowUpRight, 
+  CheckCircle2, 
+  Mail, 
+  MessageSquare, 
+  Globe2, 
+  Sparkles, 
+  Send,
+  HelpCircle,
+  ChevronDown
+} from 'lucide-react';
 import Link from 'next/link';
+import ReviewsAndCTA from '@/components/ReviewsAndCTA';
 
 const services = [
   "Next.js & MERN",
@@ -18,10 +29,30 @@ const budgets = [
   "$15k+"
 ];
 
+const faqs = [
+  {
+    q: "What is your typical project kickoff and delivery timeline?",
+    a: "Within 48 to 72 hours of finalizing technical specifications, we deploy an interactive Next.js staging prototype and database schema for your review. Complete production delivery typically ranges from 2 to 4 weeks depending on architectural scope."
+  },
+  {
+    q: "Do we retain 100% intellectual property and code ownership?",
+    a: "Yes, absolutely. Upon milestone completion, complete repository ownership, Vercel production environments, and dedicated MongoDB Atlas database access are transferred entirely to your organization with zero vendor lock-in."
+  },
+  {
+    q: "What post-deployment maintenance and SLAs do you provide?",
+    a: "Every build includes 30 days of complimentary post-launch engineering support covering zero-downtime monitoring, sub-second latency tuning, edge-caching optimizations, and rapid bug resolution."
+  },
+  {
+    q: "Can you integrate custom AI workflows and autonomous pipelines?",
+    a: "Yes. We engineer end-to-end event-driven systems using n8n, secure webhooks, vector stores, and custom RESTful endpoints seamlessly connected to your core Next.js web application."
+  }
+];
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [selectedService, setSelectedService] = useState(services[0]);
   const [selectedBudget, setSelectedBudget] = useState(budgets[1]);
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -101,10 +132,10 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
-        {/* Contact Container (Form + Direct Info) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Contact Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-24">
           
-          {/* Left: Direct Contact Info (Slides in from Left) */}
+          {/* Left: Direct Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -35 }}
             animate={{ opacity: 1, x: 0 }}
@@ -160,7 +191,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Right: The Interactive Form (Slides in from Right) */}
+          {/* Right: Form */}
           <motion.div 
             initial={{ opacity: 0, x: 35 }}
             animate={{ opacity: 1, x: 0 }}
@@ -337,6 +368,64 @@ export default function ContactPage() {
           </motion.div>
 
         </div>
+
+        {/* FAQ Section */}
+        <section className="mb-24">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#5483B3]/30 bg-white/60 dark:bg-[#052659]/60 backdrop-blur-md text-[11px] font-mono text-[#5483B3] dark:text-[#7DA0CA] mb-3 uppercase">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Project Clarity</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-serif text-[#021024] dark:text-[#C1E8FF] mb-3">
+              Frequently Addressed Queries
+            </h2>
+            <p className="text-sm text-[#052659]/75 dark:text-[#7DA0CA]">
+              Key technical and operational details before commissioning work with NevoraLabs.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto flex flex-col gap-4">
+            {faqs.map((faq, index) => {
+              const isOpen = activeFaq === index;
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-[#5483B3]/25 bg-white/70 dark:bg-[#052659]/40 backdrop-blur-md overflow-hidden transition-all duration-200"
+                >
+                  <button
+                    onClick={() => setActiveFaq(isOpen ? null : index)}
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-serif text-base sm:text-lg text-[#021024] dark:text-[#C1E8FF]"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-[#5483B3] dark:text-[#7DA0CA] transition-transform duration-300 shrink-0 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="px-5 pb-5 text-sm text-[#052659]/80 dark:text-[#7DA0CA] leading-relaxed border-t border-[#5483B3]/10 pt-3"
+                      >
+                        {faq.a}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Reviews and CTA Component Import */}
+        <section className="w-full">
+          <ReviewsAndCTA />
+        </section>
 
       </div>
     </div>

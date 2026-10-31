@@ -7,18 +7,20 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 export const metadata = {
   title: 'Nevora Labs | Premium Digital Experiences',
   description: 'Engineering scalable web architectures and AI automated workflows.',
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="relative text-[#021024] dark:text-[#C1E8FF] antialiased transition-colors duration-300">
-        
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {/* Universal 3D Network & Constellation Canvas (Dono modes par chalega) */}
           <GlobalBackground />
 
-          {/* Physical Grain Noise Texture */}
           <div 
             className="pointer-events-none fixed inset-0 z-[1] h-full w-full opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay" 
             style={{ 
@@ -26,7 +28,6 @@ export default function RootLayout({ children }) {
             }}
           />
 
-          {/* Main Website Content Layer */}
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">
@@ -35,7 +36,6 @@ export default function RootLayout({ children }) {
             <Footer />
           </div>
         </ThemeProvider>
-
       </body>
     </html>
   );

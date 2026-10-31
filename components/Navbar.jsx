@@ -141,11 +141,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Process link removed — Home, Services, Work, and Contact
   const navLinks = [
-    { name: "Home", href: "/#hero" },
-    { name: "Services", href: "/#services" },
-    { name: "Work", href: "/#works" },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Work", href: "/work" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -154,20 +153,21 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-5 sm:px-8 ${
           isScrolled
-            ? "bg-white/65 dark:bg-[#021024]/80 backdrop-blur-xl py-3.5 shadow-[0_4px_25px_rgba(5,38,89,0.08)] border-b border-[#5483B3]/25 dark:border-[#5483B3]/20"
+            ? "bg-white/70 dark:bg-[#021024]/80 backdrop-blur-xl py-3.5 shadow-[0_4px_25px_rgba(5,38,89,0.08)] border-b border-[#5483B3]/25 dark:border-[#5483B3]/20"
             : "bg-transparent py-5"
         }`}
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
           
-          {/* Logo / Wordmark */}
-          <Link href="/#hero" className="z-50 flex items-center group">
-            <span className="text-xl sm:text-2xl font-serif tracking-tight text-[#021024] dark:text-[#C1E8FF] transition-colors duration-300 font-medium">
-              Nevora
-              <span className="font-light text-[#5483B3] dark:text-[#7DA0CA] transition-colors italic">
-                labs
-              </span>
-            </span>
+          {/* Brand Logo (Full Vector Identity) */}
+          <Link href="/" className="z-50 flex items-center group py-0.5">
+            <div className="relative h-7 sm:h-8 w-auto flex items-center">
+              <img
+                src="/logo-full.png"
+                alt="NevoraLabs"
+                className="h-full w-auto object-contain transition-all duration-300 dark:brightness-0 dark:invert"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
