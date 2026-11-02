@@ -8,9 +8,14 @@ export const metadata = {
   title: 'Nevora Labs | Premium Digital Experiences',
   description: 'Engineering scalable web architectures and AI automated workflows.',
   icons: {
-    icon: '/logo.svg',
-    shortcut: '/logo.svg',
-    apple: '/logo.svg',
+    icon: [
+      {
+        url: '/logo.png',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 };
 

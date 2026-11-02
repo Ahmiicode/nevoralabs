@@ -159,17 +159,21 @@ export default function Navbar() {
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
           
-          {/* Brand Logo (Full Vector Identity) */}
-          <Link href="/" className="z-50 flex items-center group py-0.5">
-            <div className="relative h-7 sm:h-8 w-auto flex items-center">
-              <img
-                src="/logo-full.png"
-                alt="NevoraLabs"
-                className="h-full w-auto object-contain transition-all duration-300 dark:brightness-0 dark:invert"
-              />
-            </div>
-          </Link>
-
+         {/* Brand Logo (Full Vector Identity) */}
+<Link href="/" className="z-50 flex items-center group py-0.5">
+  {/* Size ko h-7 se h-10 aur sm:h-12 kar diya hai, sath hover scale add kiya hai */}
+  <div className="relative h-10 sm:h-12 w-auto flex items-center transition-transform duration-300 group-hover:scale-105">
+    <img
+      src="/logo-full.png"
+      alt="NevoraLabs"
+      /* Agar aapka logo originally WHITE hai: */
+      className="h-full w-auto object-contain transition-all duration-300 invert dark:invert-0"
+      
+      /* Agar aapka logo originally BLACK hai, toh oopar wali line mita kar ye use karein: */
+      /* className="h-full w-auto object-contain transition-all duration-300 dark:invert" */
+    />
+  </div>
+</Link>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/40 dark:bg-[#052659]/35 border border-[#5483B3]/25 dark:border-[#5483B3]/20 backdrop-blur-xl shadow-sm">
             {navLinks.map((link) => (
