@@ -4,12 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
 // ==========================================
 // BUBBLE NAV LINK COMPONENT (Hover & Ripple)
 // ==========================================
-function BubbleNavLink({ href, children, onClick }) {
+function BubbleNavLink({ href, children, onClick, isActive }) {
   const [isHovered, setIsHovered] = useState(false);
   const [ripples, setRipples] = useState([]);
 
@@ -33,8 +34,21 @@ function BubbleNavLink({ href, children, onClick }) {
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative px-4 py-2 rounded-full text-[13.5px] font-medium transition-colors duration-300 text-[#052659] hover:text-[#021024] dark:text-[#7DA0CA] dark:hover:text-[#C1E8FF]"
+      className={`relative px-4 py-2 rounded-full text-[13.5px] font-medium transition-colors duration-300 ${
+        isActive
+          ? "text-[#021024] dark:text-[#C1E8FF] font-semibold"
+          : "text-[#052659] hover:text-[#021024] dark:text-[#7DA0CA] dark:hover:text-[#C1E8FF]"
+      }`}
     >
+      {/* Active Indicator Pill */}
+      {isActive && !isHovered && (
+        <motion.span
+          layoutId="navBubbleActive"
+          transition={{ type: "spring", stiffness: 350, damping: 25 }}
+          className="absolute inset-0 rounded-full bg-[#5483B3]/15 dark:bg-[#5483B3]/25 border border-[#5483B3]/30 dark:border-[#C1E8FF]/25 -z-10"
+        />
+      )}
+
       {/* Floating Pill Bubble Background on Hover */}
       <AnimatePresence>
         {isHovered && (
@@ -131,6 +145,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -143,6 +158,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Work", href: "/work" },
     { name: "Contact", href: "/contact" },
@@ -158,26 +174,25 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
-          
-         {/* Brand Logo (Full Vector Identity) */}
-<Link href="/" className="z-50 flex items-center group py-0.5">
-  {/* Size ko h-7 se h-10 aur sm:h-12 kar diya hai, sath hover scale add kiya hai */}
-  <div className="relative h-10 sm:h-12 w-auto flex items-center transition-transform duration-300 group-hover:scale-105">
-    <img
-      src="/logo-full.png"
-      alt="NevoraLabs"
-      /* Agar aapka logo originally WHITE hai: */
-      className="h-full w-auto object-contain transition-all duration-300 invert dark:invert-0"
-      
-      /* Agar aapka logo originally BLACK hai, toh oopar wali line mita kar ye use karein: */
-      /* className="h-full w-auto object-contain transition-all duration-300 dark:invert" */
-    />
-  </div>
-</Link>
+          {/* Brand Logo (Full Vector Identity) */}
+          <Link href="/" className="z-50 flex items-center group py-0.5">
+            <div className="relative h-10 sm:h-12 w-auto flex items-center transition-transform duration-300 group-hover:scale-105">
+              <img
+                src="/logo-full.png"
+                alt="NevoraLabs"
+                className="h-full w-auto object-contain transition-all duration-300 invert dark:invert-0"
+              />
+            </div>
+          </Link>
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full bg-white/40 dark:bg-[#052659]/35 border border-[#5483B3]/25 dark:border-[#5483B3]/20 backdrop-blur-xl shadow-sm">
             {navLinks.map((link) => (
-              <BubbleNavLink key={link.name} href={link.href}>
+              <BubbleNavLink
+                key={link.name}
+                href={link.href}
+                isActive={pathname === link.href}
+              >
                 {link.name}
               </BubbleNavLink>
             ))}
@@ -234,22 +249,29 @@ export default function Navbar() {
             className="fixed inset-0 z-40 flex flex-col bg-[#EDF7FF] dark:bg-[#021024] px-6 py-24 md:hidden transition-colors duration-300"
           >
             <div className="flex flex-col gap-6 mt-8">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 + index * 0.07 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-3xl font-serif text-[#021024] dark:text-[#C1E8FF] hover:opacity-75 transition-opacity"
+              {navLinks.map((link, index) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + index * 0.07 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`text-3xl font-serif transition-opacity ${
+                        isActive
+                          ? "text-[#5483B3] dark:text-white font-bold"
+                          : "text-[#021024] dark:text-[#C1E8FF] hover:opacity-75"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
 
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
