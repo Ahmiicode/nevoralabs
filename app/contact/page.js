@@ -10,7 +10,8 @@ import {
   Sparkles, 
   Send,
   HelpCircle,
-  ChevronDown
+  ChevronDown,
+  Calendar
 } from 'lucide-react';
 import Link from 'next/link';
 import ReviewsAndCTA from '@/components/ReviewsAndCTA';
@@ -23,6 +24,7 @@ const services = [
 ];
 
 const budgets = [
+  "$1k+",
   "$1k - $3k",
   "$3k - $7k",
   "$7k - $15k",
@@ -50,8 +52,9 @@ const faqs = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedService, setSelectedService] = useState(services[0]);
-  const [selectedBudget, setSelectedBudget] = useState(budgets[1]);
+  const [selectedBudget, setSelectedBudget] = useState(budgets[0]); // Default minimum $1k+
   const [activeFaq, setActiveFaq] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -60,9 +63,35 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          service: selectedService,
+          budget: selectedBudget,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Failed to send message. Check your connection.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Magnetic Button Effect
@@ -132,10 +161,10 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
-        {/* Contact Container */}
+        {/* Contact Container (Split Layout: Left Side Info + Right Side Form) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-24">
           
-          {/* Left: Direct Contact Info */}
+          {/* Left: Direct Contact Info & Calendly Box */}
           <motion.div 
             initial={{ opacity: 0, x: -35 }}
             animate={{ opacity: 1, x: 0 }}
@@ -147,11 +176,11 @@ export default function ContactPage() {
                 Direct Inquiry
               </span>
               <a 
-                href="mailto:hello@nevoralabs.com" 
+                href="mailto:info@nevoralabs.com" 
                 className="text-base font-serif text-[#021024] dark:text-[#C1E8FF] hover:underline flex items-center gap-2"
               >
                 <Mail className="w-4 h-4 text-[#5483B3] dark:text-[#7DA0CA]" />
-                <span>hello@nevoralabs.com</span>
+                <span>info@nevoralabs.com</span>
               </a>
             </div>
 
@@ -181,7 +210,24 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#5483B3]/10 dark:bg-[#021024]/60 border border-[#5483B3]/20 mt-2">
+            {/* Calendly Discovery Call Button inside Left Box */}
+            <div className="pt-4 border-t border-[#5483B3]/15">
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#5483B3] dark:text-[#7DA0CA] uppercase block mb-2">
+                Instant Booking
+              </span>
+              <a 
+                href="/clendy" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#021024] text-[#C1E8FF] dark:bg-[#C1E8FF] dark:text-[#021024] text-xs font-mono font-bold tracking-wider hover:opacity-95 transition-all shadow-md"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Schedule Discovery Call</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[#5483B3]/10 dark:bg-[#021024]/60 border border-[#5483B3]/20 mt-1">
               <span className="text-[11px] font-mono text-[#052659] dark:text-[#C1E8FF] font-semibold block mb-0.5">
                 ⚡ 24h Guarantee
               </span>
@@ -191,7 +237,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Right: Form with Default Minimum $1k+ Budget */}
           <motion.div 
             initial={{ opacity: 0, x: 35 }}
             animate={{ opacity: 1, x: 0 }}
@@ -243,7 +289,7 @@ export default function ContactPage() {
                   {/* Service Selection */}
                   <div>
                     <label className="text-[11px] font-mono font-semibold text-[#5483B3] dark:text-[#7DA0CA] uppercase tracking-wider block mb-2">
-                      1. Required Discipline
+                      1. Required Discipline *
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {services.map((item) => (
@@ -270,10 +316,10 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Budget Selection */}
+                  {/* Budget Selection (Default minimum $1k+) */}
                   <div>
                     <label className="text-[11px] font-mono font-semibold text-[#5483B3] dark:text-[#7DA0CA] uppercase tracking-wider block mb-2">
-                      2. Target Budget
+                      2. Target Budget (Minimum $1k+) *
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {budgets.map((item) => (
@@ -355,9 +401,10 @@ export default function ContactPage() {
                   >
                     <button 
                       type="submit" 
-                      className="group w-full sm:w-auto px-8 py-3.5 bg-[#021024] text-[#C1E8FF] dark:bg-[#C1E8FF] dark:text-[#021024] text-sm font-semibold rounded-full hover:shadow-[0_8px_30px_rgba(2,16,36,0.25)] dark:hover:shadow-[0_0_30px_rgba(193,232,255,0.35)] transition-all duration-300 flex items-center justify-center gap-2 active:scale-95"
+                      disabled={loading}
+                      className="group w-full sm:w-auto px-8 py-3.5 bg-[#021024] text-[#C1E8FF] dark:bg-[#C1E8FF] dark:text-[#021024] text-sm font-semibold rounded-full hover:shadow-[0_8px_30px_rgba(2,16,36,0.25)] dark:hover:shadow-[0_0_30px_rgba(193,232,255,0.35)] transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                     >
-                      <span>Submit Architecture Blueprint</span>
+                      <span>{loading ? 'Transmitting Blueprint...' : 'Submit Architecture Blueprint'}</span>
                       <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
                     </button>
                   </motion.div>

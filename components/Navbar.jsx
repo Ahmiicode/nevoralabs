@@ -217,7 +217,7 @@ export default function Navbar() {
 
             {/* Let's Talk Magnetic CTA */}
             <div className="hidden sm:block">
-              <MagneticBubbleButton href="/contact">
+              <MagneticBubbleButton href="/clendy">
                 Let's talk
               </MagneticBubbleButton>
             </div>
@@ -301,7 +301,7 @@ export default function Navbar() {
                   href="mailto:hello@nevoralabs.com"
                   className="text-[#021024] dark:text-[#C1E8FF] text-sm font-medium hover:underline"
                 >
-                  hello@nevoralabs.com
+                  info@nevoraalabs.com
                 </a>
               </motion.div>
             </div>

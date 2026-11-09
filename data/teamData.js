@@ -104,10 +104,13 @@ export const teamMembers = [
       linkedin: '#',
     },
   },
+  // File: data/teamData.js
+
+
   {
     slug: 'areel-arshad',
     name: 'Areel Arshad',
-    role: 'AI Automation Developer',
+    role: 'AI Automation Developer & Lead Workflow Architect',
     tagline: 'Building intelligent automation systems that connect business tools and streamline operations[cite: 1, 2].',
     specialty: 'AI Agents • n8n • Python • Backend Systems[cite: 1, 2]',
     shortBio:
@@ -116,30 +119,45 @@ export const teamMembers = [
       'I am an AI Automation Developer focused on building intelligent systems that solve real business problems, streamline operations and reduce repetitive manual work[cite: 1]. My work involves designing AI-powered agents, automated workflows and backend integrations that connect different business tools into reliable, scalable systems[cite: 1]. I specialize in developing solutions for lead generation and qualification, automated follow-ups, appointment scheduling, WhatsApp automation, customer support and intelligent business process automation[cite: 1]. Using technologies such as n8n, Python, JavaScript, REST APIs, Webhooks, Gemini, OpenAI, PostgreSQL and Docker, I turn complex business requirements into practical automation solutions[cite: 1].',
     image: '/images/team3.jpeg',
     location: 'Remote Worldwide',
-    experience: 'AI Automation Specialist',
-    availability: 'Active on AI Workflows',
+    experience: 'AI Automation Specialist & System Integrator',
+    availability: 'Active on Advanced AI Workflows',
     stats: [
-      { label: 'Automations Live', value: 'Practical' },
-      { label: 'Core Stack', value: 'n8n & Python' },
-      { label: 'Focus', value: 'Business Efficiency' },
+      { label: 'Automations Live', value: 'Enterprise Grade' },
+      { label: 'Core Stack', value: 'n8n, Python & APIs' },
+      { label: 'Focus', value: 'Scalable Efficiency' },
     ],
     skills: [
-      'n8n • AI Agents • RAG • Chatbots • Prompt Engineering[cite: 2]',
-      'Python • JavaScript • REST APIs • Webhooks • JSON[cite: 2]',
-      'Google Gemini • OpenAI • WhatsApp API • Google Sheets[cite: 2]',
-      'PostgreSQL • Docker[cite: 2]',
+      'n8n Advanced Architecture • AI Agents • RAG Pipelines • Conversational Chatbots • Prompt Engineering[cite: 2]',
+      'Python • JavaScript (Node.js) • RESTful APIs • Webhook Handlers • JSON Processing[cite: 2]',
+      'Google Gemini API • OpenAI GPT-4 • WhatsApp Business API • Google Sheets & Workspace Sync[cite: 2]',
+      'PostgreSQL • Docker Containerization • Airtable • Pinecone Vector DB[cite: 2]',
+      'Human-in-the-Loop Approval Workflows • Error Handling & Admin Alerts • Rate Limiting & Queue Management'
     ],
     highlights: [
-      'Designed AI-powered real estate lead management and automated property recommendations[cite: 2].',
-      'Built intelligent form-processing systems and AI-driven customer communication workflows[cite: 2].',
-      'Focused on practical business process automation that reduces manual intervention[cite: 1].',
+      'Designed AI-powered real estate lead management, instant email follow-ups, and automated property recommendations[cite: 2].',
+      'Built intelligent conversational WhatsApp booking agents with real-time Google Calendar availability and Pinecone RAG[cite: 2].',
+      'Developed automated business analytics extractors and daily AI-generated executive reporting feeds[cite: 2].',
+      'Focused on practical, secure business process automation with built-in duplicate protection and human-in-the-loop approvals[cite: 1].',
     ],
     featuredProjects: [
       {
+        slug: 'real-estate-automation-suite',
         title: 'AI Real Estate Lead & Property Matching System',
         tech: 'n8n • OpenAI • Python • Webhooks[cite: 3]',
         description: 'An AI-powered real estate workflow that receives customer requirements through a website form, processes information, and matches property options automatically[cite: 3].',
       },
+      {
+        slug: 'dental-whatsapp-ai-agent',
+        title: 'AI Appointment Booking Assistant (WhatsApp)',
+        tech: 'n8n AI Agent • Pinecone • Google Calendar • WhatsApp API',
+        description: 'An autonomous conversational WhatsApp assistant that manages appointment scheduling, rescheduling, and clinic FAQs 24/7.',
+      },
+      {
+        slug: 'cafe-intelligence-analyst',
+        title: 'Café Intelligence: Daily AI Business Analyst + Live API',
+        tech: 'n8n • Google Gemini • Google Sheets • REST API',
+        description: 'Automated morning analysis of sales, stock levels, and margins that delivers plain-English action plans and feeds live web dashboards.',
+      }
     ],
     socials: {
       github: '#',
@@ -147,4 +165,5 @@ export const teamMembers = [
       linkedin: '#',
     },
   },
+
 ];

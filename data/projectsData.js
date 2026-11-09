@@ -2,6 +2,10 @@
 
 export const projectsData = [
   // --- CATEGORY 1: AI & AUTOMATIONS (n8n & AI Workflows) ---
+// File: data/projectsData.js
+
+
+  // --- CATEGORY 1: AI & AUTOMATIONS (n8n & AI Workflows) ---
   {
     slug: 'real-estate-automation-suite',
     title: 'Aroma Real Estate Automation Suite',
@@ -123,7 +127,8 @@ export const projectsData = [
     fullOverview: 'Integrates external weather forecasts with internal recipe and sales databases to forecast ingredient usage, minimizing over-ordering and preventing stock-outs[cite: 5].',
     tech: ['n8n AI Agent', 'Google Gemini', 'Weather API', 'Google Sheets', 'HTML Reports'],
     images: [
-      '/images/15_reservation_website-home.png',
+      // Corrected unique image mapping for Food Waste Reduction workflow
+      '/images/14_missed-call_n8n-workflow.png', 
     ],
     client: 'Restaurant Operations Portfolio Demo',
     timeline: '1 Week',
@@ -134,6 +139,30 @@ export const projectsData = [
       'Automated HTML Operations Report Dispatch',
     ],
   },
+  {
+    slug: 'restaurant-reservation-system',
+    title: 'Restaurant Reservation Request System (Website + n8n)',
+    category: 'AI & Automations',
+    tagline: 'Custom restaurant web frontend wired directly into automated sheet logging and guest emails.',
+    description: 'A restaurant website whose reservation form is wired straight into an automation that saves the request, emails the guest and alerts the staff[cite: 5].',
+    fullOverview: 'Demonstrates the combined power of Nevora Labs: a custom frontend web interface paired behind the scenes with a robust n8n validation and logging pipeline[cite: 5].',
+    tech: ['Custom Frontend Website', 'n8n Webhook', 'JavaScript Validation', 'Google Sheets', 'Gmail'],
+    images: [
+      '/images/15_reservation_website-home.png',
+      '/images/16_reservation_website-request-received.png',
+      '/images/17_reservation_n8n-workflow.png',
+      '/images/18_reservation_google-sheet.png'
+    ],
+    client: 'Aroma Coffee & Tea Co. (Portfolio Demo Build)',
+    timeline: '2 Weeks',
+    status: 'PORTFOLIO DEMO',
+    deliverables: [
+      'Responsive Restaurant Front-End (Home, Menu, Reservation)',
+      'Secure Webhook Validation & Unique Request ID Generation',
+      'Automated Guest Confirmation & Staff Notification Emails',
+    ],
+  },
+
   {
     slug: 'restaurant-reservation-system',
     title: 'Restaurant Reservation Request System (Website + n8n)',
