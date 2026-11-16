@@ -1,43 +1,11 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowUpRight, Check, Terminal, Sparkles } from 'lucide-react';
 
 // ==========================================
-// 1. FAST TYPEWRITER HOOK
-// ==========================================
-function useTypewriter(text, speed = 20, startDelay = 50) {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    let index = 0;
-    setDisplayedText('');
-    setIsComplete(false);
-
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        if (index < text.length) {
-          setDisplayedText(text.slice(0, index + 1));
-          index++;
-        } else {
-          setIsComplete(true);
-          clearInterval(interval);
-        }
-      }, speed);
-
-      return () => clearInterval(interval);
-    }, startDelay);
-
-    return () => clearTimeout(timeout);
-  }, [text, speed, startDelay]);
-
-  return { displayedText, isComplete };
-}
-
-// ==========================================
-// 2. MAGNETIC CTA BUTTON
+// MAGNETIC CTA BUTTON
 // ==========================================
 function MagneticButton({ children, href, isPrimary = false }) {
   const btnRef = useRef(null);
@@ -85,21 +53,12 @@ function MagneticButton({ children, href, isPrimary = false }) {
 }
 
 // ==========================================
-// 3. MAIN HERO COMPONENT
+// MAIN HERO COMPONENT
 // ==========================================
 export default function NevoraHero() {
   const [terminalStep, setTerminalStep] = useState(0);
 
-  // Optimized Typewriter hooks with much faster speed and shorter delays
-  const line1 = useTypewriter("Systems that work", 25, 50);
-  const line2 = useTypewriter("while you sleep.", 25, 400);
-  const subtitle = useTypewriter(
-    "Nevoralabs designs bespoke full-stack web platforms and autonomous n8n workflows that eliminate operational friction and scale client conversions.",
-    8,
-    750
-  );
-
-  // Step ticker
+  // Step ticker for terminal simulation
   useEffect(() => {
     const timer = setInterval(() => {
       setTerminalStep((prev) => (prev < 5 ? prev + 1 : 1));
@@ -135,34 +94,35 @@ export default function NevoraHero() {
             </span>
           </motion.div>
 
-          {/* Main Headline */}
-          <h1 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.6rem] xl:text-[5rem] font-serif text-[#021024] dark:text-[#C1E8FF] leading-[1.08] tracking-tight min-h-[125px] sm:min-h-[150px]">
-            <span>{line1.displayedText}</span>
-            {!line1.isComplete && (
-              <span className="inline-block w-1 h-9 sm:h-12 bg-[#052659] dark:bg-[#C1E8FF] animate-pulse ml-1.5 align-middle" />
-            )}
+          {/* Main Headline (Instant Render - No Typewriter Lag) */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[4.6rem] xl:text-[5rem] font-serif text-[#021024] dark:text-[#C1E8FF] leading-[1.08] tracking-tight"
+          >
+            <span>Systems that work</span>
             <br />
             <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#052659] via-[#5483B3] to-[#021024] dark:from-[#7DA0CA] dark:via-[#5483B3] dark:to-[#C1E8FF]">
-              {line2.displayedText}
+              while you sleep.
             </span>
-            {line1.isComplete && !line2.isComplete && (
-              <span className="inline-block w-1 h-9 sm:h-12 bg-[#5483B3] dark:bg-[#7DA0CA] animate-pulse ml-1.5 align-middle" />
-            )}
-          </h1>
+          </motion.h1>
 
           {/* Subtitle Description */}
-          <p className="mt-6 sm:mt-8 text-base sm:text-lg text-[#052659]/80 dark:text-[#7DA0CA] max-w-xl font-normal leading-relaxed min-h-[70px]">
-            {subtitle.displayedText}
-            {!subtitle.isComplete && line2.isComplete && (
-              <span className="inline-block w-0.5 h-4 bg-[#052659] dark:bg-[#7DA0CA] animate-pulse ml-1 align-baseline" />
-            )}
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 sm:mt-8 text-base sm:text-lg text-[#052659]/80 dark:text-[#7DA0CA] max-w-xl font-normal leading-relaxed"
+          >
+            Nevoralabs designs bespoke full-stack web platforms and autonomous n8n workflows that eliminate operational friction and scale client conversions.
+          </motion.p>
 
           {/* Action CTAs */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
           >
             <MagneticButton href="/contact" isPrimary={true}>
@@ -183,7 +143,7 @@ export default function NevoraHero() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="lg:col-span-5 w-full flex flex-col items-center lg:items-end"
         >
           {/* Main Glassmorphic Terminal Card */}
