@@ -2,12 +2,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowUpRight, Check, Terminal, Sparkles, Workflow } from 'lucide-react';
+import { ArrowUpRight, Check, Terminal, Sparkles } from 'lucide-react';
 
 // ==========================================
-// 1. TYPEWRITER HOOK
+// 1. FAST TYPEWRITER HOOK
 // ==========================================
-function useTypewriter(text, speed = 35, startDelay = 150) {
+function useTypewriter(text, speed = 20, startDelay = 50) {
   const [displayedText, setDisplayedText] = useState('');
   const [isComplete, setIsComplete] = useState(false);
 
@@ -90,20 +90,20 @@ function MagneticButton({ children, href, isPrimary = false }) {
 export default function NevoraHero() {
   const [terminalStep, setTerminalStep] = useState(0);
 
-  // Typewriter hooks
-  const line1 = useTypewriter("Systems that work", 40, 100);
-  const line2 = useTypewriter("while you sleep.", 40, 950);
+  // Optimized Typewriter hooks with much faster speed and shorter delays
+  const line1 = useTypewriter("Systems that work", 25, 50);
+  const line2 = useTypewriter("while you sleep.", 25, 400);
   const subtitle = useTypewriter(
     "Nevoralabs designs bespoke full-stack web platforms and autonomous n8n workflows that eliminate operational friction and scale client conversions.",
-    14,
-    1850
+    8,
+    750
   );
 
   // Step ticker
   useEffect(() => {
     const timer = setInterval(() => {
       setTerminalStep((prev) => (prev < 5 ? prev + 1 : 1));
-    }, 1400);
+    }, 1200);
     return () => clearInterval(timer);
   }, []);
 
@@ -115,7 +115,7 @@ export default function NevoraHero() {
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center relative z-10">
         
         {/* =================================================== */}
-        {/* LEFT COLUMN: Typography & CTAs                      */}
+        {/* LEFT COLUMN: Typography & CTAs                     */}
         {/* =================================================== */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           
@@ -123,7 +123,7 @@ export default function NevoraHero() {
           <motion.div 
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#5483B3]/30 bg-white/70 dark:bg-[#052659]/60 backdrop-blur-md shadow-sm mb-6 sm:mb-8"
           >
             <span className="relative flex h-2 w-2">
@@ -162,7 +162,7 @@ export default function NevoraHero() {
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
           >
             <MagneticButton href="/contact" isPrimary={true}>
@@ -181,9 +181,9 @@ export default function NevoraHero() {
         {/* RIGHT COLUMN: Streamlined Terminal & Docked Stack   */}
         {/* =================================================== */}
         <motion.div 
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="lg:col-span-5 w-full flex flex-col items-center lg:items-end"
         >
           {/* Main Glassmorphic Terminal Card */}
@@ -226,7 +226,7 @@ export default function NevoraHero() {
 
               {terminalStep >= 3 && (
                 <motion.div initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} className="pl-5 text-xs text-[#C1E8FF]/90 font-mono bg-[#052659]/40 py-1.5 px-3 rounded-lg border border-[#5483B3]/25">
-                  score: <span className="text-emerald-400 font-bold">96/100</span> • routing: <span className="text-[#7DA0CA]">Instant Handover</span>
+                  score: <span className="text-emerald-400 font-bold">96/100</span> | routing: <span className="text-[#7DA0CA]">Instant Handover</span>
                 </motion.div>
               )}
 
@@ -247,7 +247,7 @@ export default function NevoraHero() {
               )}
             </div>
 
-            {/* Docked Integration Stack Footer (No messy scattered badges) */}
+            {/* Docked Integration Stack Footer */}
             <div className="mt-5 pt-4 border-t border-[#5483B3]/20 flex items-center justify-between">
               <span className="text-[10px] font-mono text-[#7DA0CA] uppercase tracking-wider">
                 Integrated Stack
