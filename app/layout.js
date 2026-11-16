@@ -7,6 +7,9 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 export const metadata = {
   title: 'Nevora Labs | Premium Digital Experiences',
   description: 'Engineering scalable web architectures and AI automated workflows.',
+  verification: {
+    google: 'googlebee9f88c43dcc220',
+  },
   icons: {
     icon: [
       {
