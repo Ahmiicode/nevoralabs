@@ -39,7 +39,7 @@ export default function BookCallPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-serif text-[#021024] dark:text-[#C1E8FF] tracking-tight mb-4">
-            Schedule Your <span className="italic">15-Min Architecture Call</span>
+            Schedule Your <span className="italic">30-Min Architecture Call</span>
           </h1>
 
           <p className="text-[#052659]/80 dark:text-[#7DA0CA] text-sm sm:text-base font-normal max-w-xl mx-auto leading-relaxed">
@@ -50,7 +50,7 @@ export default function BookCallPage() {
           <div className="flex flex-wrap items-center justify-center gap-5 mt-5 text-xs font-mono text-[#5483B3] dark:text-[#7DA0CA]">
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-[#021024] dark:text-[#C1E8FF]" />
-              <span>15 Minutes</span>
+              <span>30 Minutes</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Video className="w-3.5 h-3.5 text-[#021024] dark:text-[#C1E8FF]" />
@@ -77,11 +77,11 @@ export default function BookCallPage() {
               Ready to Book Your Slot?
             </h3>
             <p className="text-xs sm:text-sm text-[#052659]/75 dark:text-[#7DA0CA] max-w-md mb-6 leading-relaxed">
-              Aap apna official Calendly scheduling link yahan connect kar sakte hain taake clients direct seamlessly slot select kar sakein.
+              Click below to choose your preferred date and time on our official Calendly scheduler.
             </p>
 
             <a
-              href="https://calendly.com" 
+              href="https://calendly.com/nevoraalabs/30min" 
               target="_blank"
               rel="noopener noreferrer"
               className="px-7 py-3 rounded-full bg-[#021024] text-[#C1E8FF] dark:bg-[#C1E8FF] dark:text-[#021024] text-xs font-mono font-bold tracking-wider hover:scale-105 transition-all shadow-sm"
