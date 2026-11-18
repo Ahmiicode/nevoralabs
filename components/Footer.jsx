@@ -83,11 +83,11 @@ export default function Footer() {
 
             {/* Direct Inquiry Pill */}
             <a 
-              href="mailto:hello@nevoralabs.com"
+              href="mailto:info@nevoraalabs.com"
               className="inline-flex items-center gap-2 text-xs font-mono font-medium text-[#052659] dark:text-[#C1E8FF] px-3.5 py-1.5 rounded-full bg-[#5483B3]/10 dark:bg-[#5483B3]/20 hover:bg-[#5483B3]/20 transition-colors mt-2"
             >
               <Mail className="w-3.5 h-3.5 text-[#5483B3] dark:text-[#7DA0CA]" />
-              <span>hello@nevoralabs.com</span>
+              <span>Info@nevoralabs.com</span>
               <ArrowUpRight className="w-3 h-3 text-[#5483B3] dark:text-[#7DA0CA]" />
             </a>
           </div>

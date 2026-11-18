@@ -218,7 +218,7 @@ export default function Navbar() {
             {/* Let's Talk Magnetic CTA */}
             <div className="hidden sm:block">
               <MagneticBubbleButton href="/clendy">
-                Let's talk
+              Book a Free Consultation
               </MagneticBubbleButton>
             </div>
 
@@ -280,6 +280,13 @@ export default function Navbar() {
                 className="mt-6"
               >
                 <Link
+  href="/clendy"
+  onClick={() => setIsMobileMenuOpen(false)}
+  className="inline-flex items-center my-4 justify-center w-full px-8 py-3.5 border border-[#5483B3]/40 text-[#021024] dark:text-[#C1E8FF] rounded-full font-semibold text-[15px] transition-all hover:bg-[#5483B3]/10 active:scale-95"
+>
+  Book a Free Consultation
+</Link>
+                <Link
                   href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="inline-flex items-center justify-center w-full px-8 py-3.5 bg-[#021024] text-[#C1E8FF] dark:bg-[#C1E8FF] dark:text-[#021024] rounded-full font-semibold text-[15px] shadow-md transition-all active:scale-95"
@@ -298,7 +305,7 @@ export default function Navbar() {
                   Direct Line
                 </p>
                 <a
-                  href="mailto:hello@nevoralabs.com"
+                  href="mailto:info@nevoraalabs.com"
                   className="text-[#021024] dark:text-[#C1E8FF] text-sm font-medium hover:underline"
                 >
                   info@nevoraalabs.com

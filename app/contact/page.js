@@ -176,7 +176,7 @@ export default function ContactPage() {
                 Direct Inquiry
               </span>
               <a 
-                href="mailto:info@nevoralabs.com" 
+                href="mailto:info@nevoraalabs.com" 
                 className="text-base font-serif text-[#021024] dark:text-[#C1E8FF] hover:underline flex items-center gap-2"
               >
                 <Mail className="w-4 h-4 text-[#5483B3] dark:text-[#7DA0CA]" />

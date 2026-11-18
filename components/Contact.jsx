@@ -44,7 +44,7 @@ export default function Contact() {
     <section 
       id="contact" 
       className="relative w-full bg-transparent pt-8 pb-24 px-4 sm:px-6 lg:px-8 font-sans"
-      aria-label="Get in touch with NevoraLabs"
+      aria-label="Get in touch with NevoraaLabs"
     >
       <div className="w-full max-w-5xl mx-auto relative z-10">
         
